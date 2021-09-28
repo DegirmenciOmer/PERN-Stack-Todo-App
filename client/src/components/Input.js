@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
-import { Button, Container, Form, Row, Col, InputGroup } from 'react-bootstrap'
+import { Button, Form, InputGroup } from 'react-bootstrap'
+
+export const URL = 'http://localhost:5000/todos'
 
 const Input = () => {
   const [description, setDescription] = useState('')
@@ -8,22 +10,26 @@ const Input = () => {
     e.preventDefault()
     try {
       const body = { description }
-      const response = await fetch('http://localhost:5000/todos', {
-        method: 'POST',
-        body: JSON.stringify(body),
-        headers: { 'Content-Type': 'application/json' },
-      })
-      window.location = '/'
-      console.log({ response })
+
+      if (description.length < 3) {
+        alert('You must type at least 3 characters')
+      } else {
+        const response = await fetch(URL, {
+          method: 'POST',
+          body: JSON.stringify(body),
+          headers: { 'Content-Type': 'application/json' },
+        })
+        window.location = '/'
+        console.log({ response })
+      }
     } catch (error) {
       console.log(error)
     }
   }
-  console.log({ description })
   return (
-    <Container>
+    <div>
       <h1 className='text-center mt-5'>Pern Todo App</h1>
-      <Row>
+      <div>
         <Form onSubmit={onSubmitTodo} className='d-flex mt-5'>
           <InputGroup>
             <Form.Control
@@ -37,8 +43,8 @@ const Input = () => {
             </Button>
           </InputGroup>
         </Form>
-      </Row>
-    </Container>
+      </div>
+    </div>
   )
 }
 

@@ -26,7 +26,7 @@ export function TodoListProvider({ children }) {
   console.log(todoList)
 
   return (
-    <TodoListContext.Provider value={{ todoList }}>
+    <TodoListContext.Provider value={{ todoList, setTodoList }}>
       {children}
     </TodoListContext.Provider>
   )
