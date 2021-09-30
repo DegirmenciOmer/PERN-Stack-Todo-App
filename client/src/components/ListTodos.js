@@ -2,15 +2,22 @@ import { useEffect, useState } from 'react'
 import { ListGroup, Button, ButtonGroup } from 'react-bootstrap'
 import { URL, useTodoList } from '../contexts/AllTodosContext'
 import DeleteModal from './DeleteModal'
+import EditModal from './EditModal'
 
 const ListTodos = () => {
   const { todoList, setTodoList } = useTodoList()
-  const [openModal, setOpenModal] = useState(false)
+  const [openDeleteModal, setOpenDeleteModal] = useState(false)
+  const [openEditModal, setOpenEditModal] = useState(false)
   const [activeTodo, setActiveTodo] = useState()
 
-  const handleShow = (e) => {
+  const handleDeleteShow = (e) => {
     setActiveTodo(e)
-    setOpenModal(true)
+    setOpenDeleteModal(true)
+  }
+
+  const handleEditShow = (e) => {
+    setActiveTodo(e)
+    setOpenEditModal(true)
   }
 
   const fetchTodos = async () => {
@@ -46,20 +53,28 @@ const ListTodos = () => {
                   >
                     <span>{todo.description}</span>
                     <ButtonGroup>
-                      <Button onClick={() => console.log(todo.todo_id)}>
-                        Edit
-                      </Button>
-                      <Button onClick={() => handleShow(todo)} variant='danger'>
+                      <Button onClick={() => handleEditShow(todo)}>Edit</Button>
+                      <Button
+                        onClick={() => handleDeleteShow(todo)}
+                        variant='danger'
+                      >
                         Delete
                       </Button>
                     </ButtonGroup>
                   </ListGroup.Item>
                 ))}
-              {openModal && (
+              {openDeleteModal && (
                 <DeleteModal
                   activeTodo={activeTodo}
-                  openModal={openModal}
-                  setOpenModal={setOpenModal}
+                  openModal={openDeleteModal}
+                  setOpenModal={setOpenDeleteModal}
+                />
+              )}
+              {openEditModal && (
+                <EditModal
+                  activeTodo={activeTodo}
+                  openModal={openEditModal}
+                  setOpenModal={setOpenEditModal}
                 />
               )}
             </>
