@@ -3,30 +3,47 @@ import useLocalStorage from '../hooks/useLocalStorage'
 
 const TodoListContext = React.createContext()
 
+export const URL = 'http://localhost:5000/todos'
+
 export function useTodoList() {
   return useContext(TodoListContext)
 }
 
 export function TodoListProvider({ children }) {
   const [todoList, setTodoList] = useLocalStorage('todolist', [])
+  const [description, setDescription] = useState('')
 
-  const fetchTodos = async () => {
+  const onSubmitTodo = async (e) => {
+    e.preventDefault()
     try {
-      const response = await fetch('http://localhost:5000/todos')
-      const data = await response.json()
-      setTodoList(data)
+      const body = { description }
+
+      if (description.length < 3) {
+        alert('You must type at least 3 characters')
+      } else {
+        await fetch(URL, {
+          method: 'POST',
+          body: JSON.stringify(body),
+          headers: { 'Content-Type': 'application/json' },
+        })
+        setDescription('')
+      }
+      window.location = '/'
     } catch (error) {
       console.log(error)
     }
   }
-  useEffect(() => {
-    fetchTodos()
-  }, [])
-
-  console.log(todoList)
 
   return (
-    <TodoListContext.Provider value={{ todoList }}>
+    <TodoListContext.Provider
+      value={{
+        todoList,
+        setTodoList,
+        onSubmitTodo,
+        description,
+        setDescription,
+      }}
+    >
       {children}
     </TodoListContext.Provider>
   )
