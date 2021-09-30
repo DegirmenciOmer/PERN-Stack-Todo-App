@@ -1,15 +1,9 @@
 import React from 'react'
 import { Button, Modal } from 'react-bootstrap'
-import { URL } from './Input'
+import { URL, useTodoList } from '../contexts/AllTodosContext'
 
-const DeleteModal = ({
-  id,
-  setOpenModal,
-  openModal,
-  todoList,
-  setTodoList,
-}) => {
-  console.log({ id })
+const DeleteModal = ({ activeTodo, setOpenModal, openModal }) => {
+  const { todoList, setTodoList } = useTodoList()
 
   const handleDelete = async (deleteId) => {
     try {
@@ -27,9 +21,14 @@ const DeleteModal = ({
       <Modal.Header>
         <Modal.Title>Delete Todo</Modal.Title>
       </Modal.Header>
-      <Modal.Body>Do you want to delete {id}?</Modal.Body>
+      <Modal.Body>
+        Do you want to delete "{activeTodo.description}" ?
+      </Modal.Body>
       <Modal.Footer>
-        <Button variant='danger' onClick={() => handleDelete(id)}>
+        <Button
+          variant='danger'
+          onClick={() => handleDelete(activeTodo.todo_id)}
+        >
           Delete
         </Button>
         <Button variant='secondary' onClick={() => setOpenModal(false)}>

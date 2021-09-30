@@ -1,30 +1,10 @@
 import React, { useState } from 'react'
 import { Button, Form, InputGroup } from 'react-bootstrap'
-
-export const URL = 'http://localhost:5000/todos'
+import { useTodoList } from './../contexts/AllTodosContext'
 
 const Input = () => {
-  const [description, setDescription] = useState('')
+  const { description, setDescription, onSubmitTodo } = useTodoList()
 
-  const onSubmitTodo = async (e) => {
-    e.preventDefault()
-    try {
-      const body = { description }
-
-      if (description.length < 3) {
-        alert('You must type at least 3 characters')
-      } else {
-        await fetch(URL, {
-          method: 'POST',
-          body: JSON.stringify(body),
-          headers: { 'Content-Type': 'application/json' },
-        })
-        setDescription('')
-      }
-    } catch (error) {
-      console.log(error)
-    }
-  }
   return (
     <div>
       <h1 className='text-center mt-5'>Pern Todo App</h1>
