@@ -14,13 +14,12 @@ const Input = () => {
       if (description.length < 3) {
         alert('You must type at least 3 characters')
       } else {
-        const response = await fetch(URL, {
+        await fetch(URL, {
           method: 'POST',
           body: JSON.stringify(body),
           headers: { 'Content-Type': 'application/json' },
         })
-        window.location = '/'
-        console.log({ response })
+        setDescription('')
       }
     } catch (error) {
       console.log(error)

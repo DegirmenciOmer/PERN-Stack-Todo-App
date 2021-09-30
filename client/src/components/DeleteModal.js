@@ -27,7 +27,7 @@ const DeleteModal = ({
       <Modal.Header>
         <Modal.Title>Delete Todo</Modal.Title>
       </Modal.Header>
-      <Modal.Body>Are you sure?</Modal.Body>
+      <Modal.Body>Do you want to delete {id}?</Modal.Body>
       <Modal.Footer>
         <Button variant='danger' onClick={() => handleDelete(id)}>
           Delete
