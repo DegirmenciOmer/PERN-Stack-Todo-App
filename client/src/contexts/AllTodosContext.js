@@ -1,9 +1,9 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useState } from 'react'
 import useLocalStorage from '../hooks/useLocalStorage'
 
 const TodoListContext = React.createContext()
 
-export const URL = 'http://localhost:5000/todos'
+export const URL = process.env.REACT_APP_DEV_URL
 
 export function useTodoList() {
   return useContext(TodoListContext)

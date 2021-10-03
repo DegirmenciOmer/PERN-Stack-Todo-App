@@ -17,17 +17,17 @@ export const PORT = process.env.PORT || 5000
 //add new todo
 app.post('/todos', async (req, res) => {
   try {
-    res.setHeader('Content-Type', 'application/json')
     const { description } = req.body
+    if (description.length > 55) {
+      res.status(400)
+      throw new Error('Too long text')
+    }
+    res.setHeader('Content-Type', 'application/json')
     const newTodo = await pool.query(
       'INSERT INTO todo (description) VALUES($1) RETURNING *',
       [description]
     )
-    // if (description.length > 255) {
-    //   res
-    //     .status(400)
-    //     .json({ message: 'value too long for type character varying(255)' })
-    // }
+    console.log('Success')
 
     res.json(newTodo.rows[0])
   } catch (err) {
@@ -39,7 +39,9 @@ app.post('/todos', async (req, res) => {
 //get all todos
 app.get('/todos', async (req, res) => {
   try {
-    const allTodos = await pool.query('SELECT * FROM todo')
+    const allTodos = await pool.query(
+      'SELECT * FROM todo ORDER BY updated_at DESC'
+    )
 
     res.json(allTodos.rows)
   } catch (error) {
