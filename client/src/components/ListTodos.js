@@ -43,26 +43,23 @@ const ListTodos = () => {
             <p>No todos</p>
           ) : (
             <>
-              {todoList
-                .slice(0)
-                .reverse()
-                .map((todo) => (
-                  <ListGroup.Item
-                    className='d-flex justify-content-between'
-                    key={todo.todo_id}
-                  >
-                    <span>{todo.description}</span>
-                    <ButtonGroup>
-                      <Button onClick={() => handleEditShow(todo)}>Edit</Button>
-                      <Button
-                        onClick={() => handleDeleteShow(todo)}
-                        variant='danger'
-                      >
-                        Delete
-                      </Button>
-                    </ButtonGroup>
-                  </ListGroup.Item>
-                ))}
+              {todoList.map((todo) => (
+                <ListGroup.Item
+                  className='d-flex justify-content-between'
+                  key={todo.todo_id}
+                >
+                  <span>{todo.description}</span>
+                  <ButtonGroup>
+                    <Button onClick={() => handleEditShow(todo)}>Edit</Button>
+                    <Button
+                      onClick={() => handleDeleteShow(todo)}
+                      variant='danger'
+                    >
+                      Delete
+                    </Button>
+                  </ButtonGroup>
+                </ListGroup.Item>
+              ))}
               {openDeleteModal && (
                 <DeleteModal
                   activeTodo={activeTodo}
