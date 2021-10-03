@@ -15,6 +15,19 @@ const ListTodos = () => {
     setOpenDeleteModal(true)
   }
 
+  const handleToggle = (toggleId) => {
+    toggleTodo(toggleId)
+    window.location = '/'
+  }
+
+  const toggleTodo = async (toggleId) => {
+    try {
+      await fetch(`${URL}/toggle/${toggleId}`, { method: 'PUT' })
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
   const handleEditShow = (e) => {
     setActiveTodo(e)
     setOpenEditModal(true)
@@ -48,14 +61,28 @@ const ListTodos = () => {
                   className='d-flex justify-content-between'
                   key={todo.todo_id}
                 >
-                  <span>{todo.description}</span>
+                  <p
+                    onClick={() => handleToggle(todo.todo_id)}
+                    // className={todo.is_done && 'done'}
+                    style={{
+                      marginTop: '5px',
+                      width: '100%',
+                      textDecorationLine: `${
+                        todo.is_done ? 'line-through' : 'none'
+                      } `,
+                    }}
+                  >
+                    {todo.description}
+                  </p>
                   <ButtonGroup>
-                    <Button onClick={() => handleEditShow(todo)}>Edit</Button>
+                    <Button onClick={() => handleEditShow(todo)}>
+                      <i className='fa fa-edit'></i>
+                    </Button>
                     <Button
                       onClick={() => handleDeleteShow(todo)}
                       variant='danger'
                     >
-                      Delete
+                      <i className='fa fa-trash'></i>
                     </Button>
                   </ButtonGroup>
                 </ListGroup.Item>

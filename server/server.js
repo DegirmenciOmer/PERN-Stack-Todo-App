@@ -83,6 +83,20 @@ app.put('/todos/:id', async (req, res) => {
   }
 })
 
+//mark a todo as done
+app.put('/todos/toggle/:id', async (req, res) => {
+  try {
+    const { id } = req.params
+    await pool.query(
+      'UPDATE todo SET is_done = NOT(COALESCE(is_done, FALSE)) WHERE todo_id = $1',
+      [id]
+    )
+  } catch (error) {
+    console.error(error.message)
+    res.json(error.message)
+  }
+})
+
 //delete a todo
 app.delete('/todos/:id', async (req, res) => {
   try {

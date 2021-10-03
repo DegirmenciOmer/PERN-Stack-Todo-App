@@ -3,8 +3,11 @@ import useLocalStorage from '../hooks/useLocalStorage'
 
 const TodoListContext = React.createContext()
 
-export const URL = process.env.REACT_APP_DEV_URL
-
+export const URL =
+  process.env.NODE_ENV === 'development'
+    ? process.env.REACT_APP_DEV_URL
+    : process.env.REACT_APP_PRODUCTION_URL
+console.log(URL, process.env.NODE_ENV)
 export function useTodoList() {
   return useContext(TodoListContext)
 }

@@ -31,3 +31,7 @@
 .list-group-item:hover{
   background-color: #d4d8df;
 }
+
+.done{
+  text-decoration: line-through !important;
+}
