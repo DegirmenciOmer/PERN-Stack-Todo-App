@@ -23,7 +23,7 @@ const EditModal = ({ activeTodo, setOpenModal, openModal }) => {
     }
   }
   return (
-    <Modal closeModal show={openModal} onHide={() => setOpenModal(false)}>
+    <Modal show={openModal} onHide={() => setOpenModal(false)}>
       <Modal.Header>
         <Modal.Title>Edit Todo</Modal.Title>
       </Modal.Header>

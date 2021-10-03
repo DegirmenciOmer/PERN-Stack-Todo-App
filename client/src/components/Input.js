@@ -17,8 +17,12 @@ const Input = () => {
               placeholder='Enter a new todo'
               onChange={(e) => setDescription(e.target.value)}
             />
-            <Button variant='success' type='submit'>
-              Add
+            <Button
+              style={{ fontSize: '19px', paddingTop: '0', paddingBottom: '0' }}
+              variant='success'
+              type='submit'
+            >
+              <i className='fa fa-paper-plane'></i>
             </Button>
           </InputGroup>
         </Form>
