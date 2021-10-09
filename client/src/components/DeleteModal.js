@@ -1,6 +1,7 @@
 import React from 'react'
 import { Button, Modal } from 'react-bootstrap'
-import { URL, useTodoList } from '../contexts/AllTodosContext'
+import { useTodoList } from '../contexts/AllTodosContext'
+import { URL } from '../utils'
 
 const DeleteModal = ({ activeTodo, setOpenModal, openModal }) => {
   const { todoList, setTodoList } = useTodoList()

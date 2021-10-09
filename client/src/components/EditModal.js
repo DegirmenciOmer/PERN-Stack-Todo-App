@@ -1,26 +1,14 @@
 import React, { useState } from 'react'
 import { Button, Form, Modal } from 'react-bootstrap'
-import { URL } from '../contexts/AllTodosContext'
+import { editTodo } from './../utils/index'
 
 const EditModal = ({ activeTodo, setOpenModal, openModal }) => {
   const [description, setDescription] = useState(activeTodo.description)
 
-  const handleEdit = async (e) => {
+  const handleEdit = (e) => {
     e.preventDefault()
-    try {
-      const body = { description }
-
-      await fetch(`${URL}/${activeTodo.todo_id}`, {
-        method: 'PUT',
-        body: JSON.stringify(body),
-        headers: { 'Content-Type': 'application/json' },
-      })
-      setOpenModal(false)
-
-      window.location = '/'
-    } catch (error) {
-      console.error(error)
-    }
+    editTodo(description, activeTodo.todo_id)
+    setOpenModal(false)
   }
   return (
     <Modal show={openModal} onHide={() => setOpenModal(false)}>
