@@ -16,8 +16,13 @@ A basic todo app which has create, update, and delete features.
 
 <img src="./client/public/assets/New-Contact.png" width="400" />
 
-- When you update an existing todo, it will be displayed automatically on the top of the list( originated from the DB).
+- You can easily edit an existing todo.
 
+## Display as done
+
+<img src="./client/public/assets/New-Contact.png" width="400" />
+
+- When you click/press on a todo item, it will set as done.
 ## Delete todo
 <img src="./client/public/assets/Group-messaging.png" width="400" />
 
