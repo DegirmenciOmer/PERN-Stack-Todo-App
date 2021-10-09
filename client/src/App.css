@@ -32,6 +32,12 @@
   background-color: #d4d8df;
 }
 
-.done{
+.is-done{
   text-decoration: line-through !important;
+}
+
+.but{
+  height: 2.1rem !important;
+  line-height: 0 !important;
+
 }

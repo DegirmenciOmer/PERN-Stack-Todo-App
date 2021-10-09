@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Button, Form, InputGroup } from 'react-bootstrap'
 import { useTodoList } from './../contexts/AllTodosContext'
 
@@ -10,7 +10,7 @@ const Input = () => {
       <h1 className='text-center mt-5'>Pern Todo App</h1>
       <div>
         <Form onSubmit={onSubmitTodo} className='d-flex mt-5'>
-          <InputGroup>
+          <InputGroup className='mb-3'>
             <Form.Control
               value={description}
               type='text'
