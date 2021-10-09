@@ -10,7 +10,7 @@ function App() {
   const [value, setValue] = useState(null)
   return (
     <TodoListProvider>
-      <Container>
+      <Container className='col-xs-4 col-md-6 mx-auto'>
         <Input />
         <Dropdown
           prompt='Search...'

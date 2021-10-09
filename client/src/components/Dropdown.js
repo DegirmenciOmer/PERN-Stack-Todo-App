@@ -36,7 +36,7 @@ const Dropdown = ({ value, setValue, prompt }) => {
 
       setOptions(opts.slice(0, 4))
     } else {
-      return 'not found'
+      setOptions([])
     }
   }
 
@@ -114,7 +114,7 @@ const Dropdown = ({ value, setValue, prompt }) => {
             ))}
         </div>
       </div>
-      {value && <TodoItem todo={value} />}
+      {value && <TodoItem style={{ borderRadius: '33px' }} todo={value} />}
     </>
   )
 }
