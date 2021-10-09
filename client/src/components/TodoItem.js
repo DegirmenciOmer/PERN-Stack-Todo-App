@@ -8,6 +8,7 @@ const TodoItem = ({ todo }) => {
   const [openDeleteModal, setOpenDeleteModal] = useState(false)
   const [openEditModal, setOpenEditModal] = useState(false)
   const [activeTodo, setActiveTodo] = useState()
+  const [showOnHover, setShowOnHover] = useState(false)
 
   const handleDeleteShow = (e) => {
     setActiveTodo(e)
@@ -24,31 +25,45 @@ const TodoItem = ({ todo }) => {
     setOpenEditModal(true)
   }
 
+  const responsiveBtnDisplay = {
+    display: `${
+      showOnHover || window.innerWidth < 768 ? 'inline-block' : 'none'
+    } `,
+  }
+
+  console.log(window.innerWidth)
+
   return (
     <>
       <ListGroup.Item
-        className='d-flex justify-content-between'
+        className='todo-item mh-100 rounded'
         key={todo.todo_id}
+        onMouseOverCapture={() => setShowOnHover(true)}
+        onMouseLeave={() => setShowOnHover(false)}
       >
-        <p
-          onClick={() => handleToggle(todo.todo_id)}
-          style={{
-            marginBottom: '0',
-            paddingBottom: '0',
-            width: '100%',
-            textDecorationLine: `${todo.is_done ? 'line-through' : 'none'} `,
-          }}
-        >
-          {todo.description}
-        </p>
-        <ButtonGroup>
-          <Button className='but' onClick={() => handleEditShow(todo)}>
+        <ButtonGroup className='d-flex'>
+          <span
+            onClick={() => handleToggle(todo.todo_id)}
+            style={{
+              width: '100%',
+              textDecorationLine: `${todo.is_done ? 'line-through' : 'none'} `,
+            }}
+          >
+            {todo.description}
+          </span>
+          <Button
+            style={responsiveBtnDisplay}
+            variant='outline-secondary'
+            className='but border-0'
+            onClick={() => handleEditShow(todo)}
+          >
             <i className='fa fa-edit'></i>
           </Button>
           <Button
-            className='but'
+            style={responsiveBtnDisplay}
+            className='but border-0'
             onClick={() => handleDeleteShow(todo)}
-            variant='danger'
+            variant='outline-danger'
           >
             <i className='fa fa-trash'></i>
           </Button>

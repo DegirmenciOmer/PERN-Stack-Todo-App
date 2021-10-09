@@ -17,7 +17,7 @@ const ListTodos = () => {
 
   return (
     <>
-      <h1 className='text-center mt-5'>Todo List</h1>
+      <h1 className='text-center mt-3'>Todo List</h1>
       <div>
         <ListGroup>
           {todoList.length === 0 ? (
