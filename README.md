@@ -12,6 +12,9 @@ URL: https://pern-todo-omer.netlify.app/
 -When you add a new todo, it will be displayed automatically on the top of the list( originated from the DB)
 
 
+## Search
+-You can search a specific todo with auto-complete feature.
+
 
 ## Update todo
 
