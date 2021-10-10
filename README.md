@@ -3,6 +3,7 @@
 
 ## General Info
 A basic todo app which has create, update, and delete features.
+URL: https://pern-todo-omer.netlify.app/
 
 
 ## Add new todo
