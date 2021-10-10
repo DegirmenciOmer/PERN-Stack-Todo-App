@@ -8,20 +8,22 @@ URL: https://pern-todo-omer.netlify.app/
 
 ## Add new todo
 
-<img src="./client/public/add.png" width="400" /> <img src="./client/public/add-s.png" width="400" />
--When you add a new todo, it will be displayed automatically on the top of the list( originated from the DB)
+<img src="./client/public/add.png" width="800" /> <vr/> <img src="./client/public/add-s.jpg" width="200" />
+
+- When you add a new todo, it will be displayed automatically on the top of the list( originated from the DB)
 
 
 ## Search
-<img src="./client/public/search.png" width="400" /> 
-<img src="./client/public/search-s.png" width="400" />
--You can search a specific todo with auto-complete feature.
+<img src="./client/public/search.png" width="800" /> <vr/>
+<img src="./client/public/search-s.jpg" width="200" />
+
+- You can search a specific todo with auto-complete feature.
 
 
 ## Update todo
 
-<img src="./client/public/update.png" width="400" />
-<img src="./client/public/edit-s.png" width="400" />
+<img src="./client/public/update.png" width="800" />
+<img src="./client/public/edit-s.jpg" width="200" />
 
 - You can easily edit an existing todo.
 
@@ -30,9 +32,9 @@ URL: https://pern-todo-omer.netlify.app/
 
 - When you click/press on a todo item, it will set as done.
 ## Delete todo
-<img src="./client/public/delete.png" width="400" />
+<img src="./client/public/delete.png" width="800" />
 
-<img src="./client/public/delete-s.png" width="400" />
+<img src="./client/public/delete-s.jpg" width="200" />
 
 
 
