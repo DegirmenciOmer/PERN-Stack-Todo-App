@@ -14,21 +14,21 @@ URL: https://pern-todo-omer.netlify.app/
 
 ## Search
 -You can search a specific todo with auto-complete feature.
-
+<img src="./client/public/assets/search.png" width="400" />
 
 ## Update todo
 
-<img src="./client/public/assets/New-Contact.png" width="400" />
+<img src="./client/public/assets/update.png" width="400" />
 
 - You can easily edit an existing todo.
 
 ## Display as done
 
-<img src="./client/public/assets/New-Contact.png" width="400" />
+<img src="./client/public/assets/done.png" width="400" />
 
 - When you click/press on a todo item, it will set as done.
 ## Delete todo
-<img src="./client/public/assets/Group-messaging.png" width="400" />
+<img src="./client/public/assets/delete.png" width="400" />
 
 
 
