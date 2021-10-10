@@ -58,7 +58,6 @@ $ npm run dev
 
 //This will start both server and frontend.
 ```
-cd server/
 
  ## Reference
  This project was initially coded along with [this tutorial](https://www.youtube.com/watch?v=ldYcgPKEZC8).
