@@ -4,3 +4,19 @@ CREATE TABLE todo(
   todo_id SERIAL PRIMARY KEY,
   description VARCHAR(255), is_done BOOLEAN DEFAULT FALSE;
 );
+
+CREATE TABLE users(
+  user_id SERIAL PRIMARY KEY NOT NULL,
+  name VARCHAR(150) NOT NULL,
+  email VARCHAR(150) NOT NULL,
+  password VARCHAR(100) NOT NULL,
+  todo_id INT REFERENCES todo(todo_id) ON DELETE CASCADE ON UPDATE CASCADE,
+  
+  
+  UNIQUE(email)
+);
+
+
+
+  ALTER TABLE todo
+ADD user_id INT NOT NULL REFERENCES users(user_id) DEFAULT 1;

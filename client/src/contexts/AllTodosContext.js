@@ -11,11 +11,13 @@ export function useTodoList() {
 export function TodoListProvider({ children }) {
   const [todoList, setTodoList] = useLocalStorage('todolist', [])
   const [description, setDescription] = useState('')
+  const [userId, setUserId] = useState(2)
 
   const onSubmitTodo = async (e) => {
     e.preventDefault()
     try {
-      const body = { description }
+      setUserId(2)
+      const body = { description, user_id: userId }
 
       if (description.length < 3) {
         alert('You must type at least 3 characters')

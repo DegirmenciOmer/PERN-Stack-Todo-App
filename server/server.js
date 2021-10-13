@@ -14,20 +14,38 @@ app.use(express.json())
 
 export const PORT = process.env.PORT || 5000
 
+// register user
+app.post('/users/register', async (req, res) => {
+  try {
+    const { name, email, password } = req.body
+    res.setHeader('Content-Type', 'application/json')
+    const newUser = await pool.query(
+      'INSERT INTO users(name, email, password) VALUES($1, $2, $3) RETURNING *',
+      [name, email, password]
+    )
+
+    res.json(newUser.rows[0])
+  } catch (err) {
+    console.error(err.message)
+    res.status(400).json({ message: err.message })
+  }
+})
+
 //add new todo
 app.post('/todos', async (req, res) => {
   try {
-    const { description } = req.body
+    const { description, user_id } = req.body
     if (description.length > 55) {
       res.status(400)
       throw new Error('Too long text')
     }
+
+    console.log(req.body.user_id)
     res.setHeader('Content-Type', 'application/json')
     const newTodo = await pool.query(
-      'INSERT INTO todo (description) VALUES($1) RETURNING *',
-      [description]
+      'INSERT INTO todo (description, user_id) VALUES($1, $2) RETURNING *',
+      [description, user_id]
     )
-    console.log('Success')
 
     res.json(newTodo.rows[0])
   } catch (err) {
