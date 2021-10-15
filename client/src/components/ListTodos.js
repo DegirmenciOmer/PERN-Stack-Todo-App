@@ -5,7 +5,7 @@ import TodoItem from './TodoItem'
 import { fetchTodos } from './../utils/index'
 
 const ListTodos = () => {
-  const { todoList, setTodoList } = useTodoList()
+  const { todoList, setTodoList, searchValue } = useTodoList()
 
   useEffect(() => {
     let isMounted = true
@@ -17,7 +17,6 @@ const ListTodos = () => {
 
   return (
     <>
-      <h1 className='text-center mt-3'>Todo List</h1>
       <div>
         <ListGroup>
           {todoList.length === 0 ? (

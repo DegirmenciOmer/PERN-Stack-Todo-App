@@ -36,7 +36,7 @@ const TodoItem = ({ todo }) => {
   return (
     <>
       <ListGroup.Item
-        className='todo-item mh-100 rounded'
+        className='todo-item mh-100 rounded px-2'
         key={todo.todo_id}
         onMouseOverCapture={() => setShowOnHover(true)}
         onMouseLeave={() => setShowOnHover(false)}
@@ -44,24 +44,34 @@ const TodoItem = ({ todo }) => {
         <ButtonGroup className='d-flex'>
           <span
             onClick={() => handleToggle(todo.todo_id)}
+            className='w-100'
             style={{
-              width: '100%',
               textDecorationLine: `${todo.is_done ? 'line-through' : 'none'} `,
+              color: `${todo.is_done ? 'gray' : '#000'} `,
             }}
           >
+            <input
+              id={todo.todo_id}
+              type='radio'
+              onChange={() => {}}
+              checked={todo.is_done}
+              style={{
+                marginRight: '5px',
+              }}
+            />
             {todo.description}
           </span>
           <Button
             style={responsiveBtnDisplay}
             variant='outline-secondary'
-            className='but border-0'
+            className='but border-0 p-1'
             onClick={() => handleEditShow(todo)}
           >
             <i className='fa fa-edit'></i>
           </Button>
           <Button
             style={responsiveBtnDisplay}
-            className='but border-0'
+            className='but border-0 p-1'
             onClick={() => handleDeleteShow(todo)}
             variant='outline-danger'
           >

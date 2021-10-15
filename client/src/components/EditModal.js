@@ -7,21 +7,33 @@ const EditModal = ({ activeTodo, setOpenModal, openModal }) => {
 
   const handleEdit = (e) => {
     e.preventDefault()
-    editTodo(description, activeTodo.todo_id)
-    setOpenModal(false)
+    if (description.length < 4) {
+      return alert('Input value must be minimum 3 characters!')
+    } else {
+      editTodo(description, activeTodo.todo_id)
+      setOpenModal(false)
+    }
+  }
+
+  const handleEditInput = (e) => {
+    e.preventDefault()
+    const { value, maxLength } = e.target
+    const limitedValue = value.slice(0, maxLength)
+
+    setDescription(limitedValue)
   }
   return (
-    <Modal show={openModal} onHide={() => setOpenModal(false)}>
+    <Modal centered show={openModal} onHide={() => setOpenModal(false)}>
       <Modal.Header>
         <Modal.Title>Edit Todo</Modal.Title>
       </Modal.Header>
       <Form onSubmit={(e) => handleEdit(e)}>
         <Modal.Body>
           <Form.Control
+            maxLength='30'
             value={description}
             type='text'
-            placeholder='Enter a new todo'
-            onChange={(e) => setDescription(e.target.value)}
+            onChange={(e) => handleEditInput(e)}
           />
         </Modal.Body>
         <Modal.Footer>

@@ -3,7 +3,7 @@
 }
 
 body{
-  background-color: #fce9e0 !important;
+  background-color: #5c90eb !important;
 }
 
 .App-logo {
@@ -36,13 +36,6 @@ body{
   background-color: #d4d8df !important;
 }
 
-.container{
-
-}
-
-.is-done{
-  text-decoration: line-through !important;
-}
 
 .but{
   height: 2.1rem !important;
@@ -63,7 +56,7 @@ body{
   padding-bottom: 0 !important;
   width: 100% !important;
   cursor: pointer !important;
-  background-color: lightblue !important;
+  background-color: rgb(160, 206, 255) !important;
   height: 2.2rem !important;
 }
 
