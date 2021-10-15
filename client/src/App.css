@@ -3,7 +3,18 @@
 }
 
 body{
+
   background-color: #5c90eb !important;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+
+#root{
+  width: 50%;
+  
 }
 
 .App-logo {
