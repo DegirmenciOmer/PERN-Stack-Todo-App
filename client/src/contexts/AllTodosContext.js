@@ -11,7 +11,7 @@ export function useTodoList() {
 export function TodoListProvider({ children }) {
   const [todoList, setTodoList] = useLocalStorage('todolist', [])
   const [description, setDescription] = useState('')
-
+  const [searchValue, setSearchValue] = useState(null)
   const onSubmitTodo = async (e) => {
     e.preventDefault()
     try {
@@ -41,6 +41,8 @@ export function TodoListProvider({ children }) {
         onSubmitTodo,
         description,
         setDescription,
+        searchValue,
+        setSearchValue,
       }}
     >
       {children}

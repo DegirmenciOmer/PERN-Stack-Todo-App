@@ -1,39 +1,45 @@
 import React, { useState } from 'react'
-import Input from './Input'
 import Dropdown from './Dropdown'
-import {
-  Button,
-  Container,
-  Form,
-  FormControl,
-  Nav,
-  Navbar,
-  NavDropdown,
-} from 'react-bootstrap'
+import { Container, Navbar } from 'react-bootstrap'
+import { useTodoList } from '../contexts/AllTodosContext'
+import TodoItem from './TodoItem'
 
 const Header = () => {
-  const [value, setValue] = useState(null)
+  const { setSearchValue, searchValue } = useTodoList()
+
   return (
-    <Navbar bg='light' expand='lg'>
-      <Container fluid>
-        <Navbar.Brand href='#'>Pern Todo App</Navbar.Brand>
-        <Navbar.Toggle aria-controls='navbarScroll' />
-        <Navbar.Collapse id='navbarScroll'>
-          <Nav
-            className='me-auto my-2 my-lg-0'
-            style={{ maxHeight: '100px' }}
-            navbarScroll
-          ></Nav>
-          <Input />
-          <Dropdown
-            prompt='Search...'
-            setValue={setValue}
-            onChange={(val) => setValue(val)}
-            value={value}
-          />
-        </Navbar.Collapse>
-      </Container>
-    </Navbar>
+    <>
+      <Navbar
+        style={{ backgroundColor: 'rgb(140, 196, 255)' }}
+        expand='lg'
+        className='rounded'
+      >
+        <Container fluid>
+          <Navbar.Brand href='#'>
+            <h2>Todo App</h2>
+          </Navbar.Brand>
+          <Navbar.Toggle aria-controls='basic-navbar-nav' />
+          <Navbar.Collapse
+            className='justify-content-end'
+            id='basic-navbar-nav'
+          >
+            <Dropdown
+              prompt='Search...'
+              onChange={(val) => setSearchValue(val)}
+            />
+          </Navbar.Collapse>
+        </Container>
+      </Navbar>
+
+      {searchValue && (
+        <div className='mt-5 mb-3'>
+          <h6>Selected Todo:</h6>
+
+          <TodoItem todo={searchValue} />
+          <hr />
+        </div>
+      )}
+    </>
   )
 }
 
