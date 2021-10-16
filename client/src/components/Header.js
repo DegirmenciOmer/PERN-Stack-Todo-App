@@ -23,10 +23,13 @@ const Header = () => {
             className='justify-content-end'
             id='basic-navbar-nav'
           >
-            <Dropdown
-              prompt='Search...'
-              onChange={(val) => setSearchValue(val)}
-            />
+            <div>
+              {' '}
+              <Dropdown
+                prompt='Search...'
+                onChange={(val) => setSearchValue(val)}
+              />
+            </div>
           </Navbar.Collapse>
         </Container>
       </Navbar>
