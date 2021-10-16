@@ -5,16 +5,11 @@
 body{
 
   background-color: #5c90eb !important;
-  height: 100vh;
+  height: 100vh ;
   display: flex;
   align-items: center;
   justify-content: center;
 
-}
-
-#root{
-  width: 50%;
-  
 }
 
 .App-logo {
@@ -45,6 +40,10 @@ body{
 
 .list-group-item:hover{
   background-color: #d4d8df !important;
+}
+
+#root{
+  width: 100vw;
 }
 
 

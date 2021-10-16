@@ -4,14 +4,12 @@ import ListTodos from './components/ListTodos'
 import { TodoListProvider } from './contexts/AllTodosContext'
 import Input from './components/Input'
 import Header from './components/Header'
-import TodoItem from './components/TodoItem'
 
 function App() {
   return (
     <TodoListProvider>
-      <Container className='col-xs-4 col-md-6 mx-auto'>
+      <Container className='col-sm-12 col-md-8 col-lg-4 mx-auto h-40'>
         <Header />
-
         <Input />
         <ListTodos />
       </Container>
