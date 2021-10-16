@@ -18,7 +18,7 @@ const DeleteModal = ({ activeTodo, setOpenModal, openModal }) => {
     }
   }
   return (
-    <Modal show={openModal} onHide={() => setOpenModal(false)}>
+    <Modal centered show={openModal} onHide={() => setOpenModal(false)}>
       <Modal.Header>
         <Modal.Title>Delete Todo</Modal.Title>
       </Modal.Header>

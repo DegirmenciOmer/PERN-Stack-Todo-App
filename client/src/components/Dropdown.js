@@ -3,8 +3,8 @@ import { useTodoList } from '../contexts/AllTodosContext'
 import './Dropdown.css'
 import TodoItem from './TodoItem'
 
-const Dropdown = ({ value, setValue, prompt }) => {
-  const { todoList } = useTodoList()
+const Dropdown = ({ prompt }) => {
+  const { todoList, setSearchValue, searchValue } = useTodoList()
 
   const [open, setOpen] = useState(false)
   const [cursor, setCursor] = useState(0)
@@ -66,7 +66,7 @@ const Dropdown = ({ value, setValue, prompt }) => {
   }
   //debouncing
   function handleSelect(val) {
-    setValue(val)
+    setSearchValue(val)
     setOpen(false)
     setCursor(0)
     setOptions([])
@@ -80,13 +80,13 @@ const Dropdown = ({ value, setValue, prompt }) => {
             <input
               data-testid='input'
               ref={inputRef}
-              placeholder={value ? value.description : prompt}
+              placeholder={searchValue ? searchValue.description : prompt}
               type='text'
-              value={value ? value.description : searchQuery}
+              value={searchValue ? searchValue.description : searchQuery}
               onChange={(e) => {
                 !open && setOpen(true)
                 setSearchQuery(e.target.value)
-                setValue(null)
+                setSearchValue(null)
               }}
               onKeyDown={(e) => keyboardNavigation(e)}
               onMouseOver={() => setCursor(0)}
@@ -101,7 +101,7 @@ const Dropdown = ({ value, setValue, prompt }) => {
               <div
                 data-testid={`opt${index}`}
                 className={`option ${
-                  (value === option && 'selected') ||
+                  (searchValue === option && 'selected') ||
                   (option === options[cursor] && 'selected')
                 }`}
                 onClick={() => {
@@ -114,7 +114,6 @@ const Dropdown = ({ value, setValue, prompt }) => {
             ))}
         </div>
       </div>
-      {value && <TodoItem style={{ borderRadius: '33px' }} todo={value} />}
     </>
   )
 }

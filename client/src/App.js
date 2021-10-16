@@ -1,25 +1,20 @@
 import './App.css'
-import Input from './components/Input'
 import { Container } from 'react-bootstrap'
 import ListTodos from './components/ListTodos'
 import { TodoListProvider } from './contexts/AllTodosContext'
+import Input from './components/Input'
+import Header from './components/Header'
 import Dropdown from './components/Dropdown'
 import { useState } from 'react'
 import Login from './components/Login'
 
 function App() {
-  const [value, setValue] = useState(null)
   const [id, setId] = useState()
   return id ? (
     <TodoListProvider>
-      <Container className='col-xs-4 col-md-6 mx-auto'>
+      <Container className='col-sm-12 col-md-8 col-lg-4 mx-auto h-40'>
+        <Header />
         <Input />
-        <Dropdown
-          prompt='Search...'
-          setValue={setValue}
-          onChange={(val) => setValue(val)}
-          value={value}
-        />
         <ListTodos />
       </Container>
     </TodoListProvider>

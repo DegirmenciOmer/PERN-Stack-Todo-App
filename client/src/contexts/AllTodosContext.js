@@ -13,6 +13,7 @@ export function TodoListProvider({ children }) {
   const [description, setDescription] = useState('')
   const [userId, setUserId] = useState(2)
 
+  const [searchValue, setSearchValue] = useState(null)
   const onSubmitTodo = async (e) => {
     e.preventDefault()
     try {
@@ -43,6 +44,8 @@ export function TodoListProvider({ children }) {
         onSubmitTodo,
         description,
         setDescription,
+        searchValue,
+        setSearchValue,
       }}
     >
       {children}
