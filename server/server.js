@@ -1,6 +1,8 @@
 import express from 'express'
 import pool from './db.js'
 import cors from 'cors'
+import asyncHandler from 'express-async-handler'
+import { v4 as uuidV4 } from 'uuid'
 
 const app = express()
 app.use(
@@ -17,22 +19,40 @@ export const PORT = process.env.PORT || 5000
 // register user
 app.post('/users/register', async (req, res) => {
   try {
+    const id = uuidV4()
+    console.log({ id })
     const { name, email, password } = req.body
     res.setHeader('Content-Type', 'application/json')
-    const newUser = await pool.query(
-      'INSERT INTO users(name, email, password) VALUES($1, $2, $3) RETURNING *',
-      [name, email, password]
-    )
 
-    res.json(newUser.rows[0])
-  } catch (err) {
-    console.error(err.message)
-    res.status(400).json({ message: err.message })
+    const { rowCount: alreadyExists } = await pool.query(
+      'SELECT * FROM users WHERE email = $1',
+      [email]
+    )
+    console.log({ alreadyExists })
+    if (alreadyExists) {
+      throw new Error('This email adress already exists')
+    } else {
+      const newUser = await pool.query(
+        'INSERT INTO users(name, email, password, user_id) VALUES($1, $2, $3, $4) RETURNING *',
+        [name, email, password, id]
+      )
+      // const user = await pool.query(
+      //   'SELECT user_id FROM users WHERE user_id = $1',
+      //   [id]
+      // )
+      // console.log(user.rows[0])
+
+      res.status(201).json(newUser.rows[0])
+    }
+  } catch (error) {
+    console.log(error.message)
+    res.status(400).send(error.message)
   }
 })
 
 //add new todo
 app.post('/todos', async (req, res) => {
+  res.setHeader('Content-Type', 'application/json')
   try {
     const { description, user_id } = req.body
     if (description.length > 55) {
@@ -41,7 +61,6 @@ app.post('/todos', async (req, res) => {
     }
 
     console.log(req.body.user_id)
-    res.setHeader('Content-Type', 'application/json')
     const newTodo = await pool.query(
       'INSERT INTO todo (description, user_id) VALUES($1, $2) RETURNING *',
       [description, user_id]
@@ -50,16 +69,24 @@ app.post('/todos', async (req, res) => {
     res.json(newTodo.rows[0])
   } catch (err) {
     console.error(err.message)
-    res.status(400).json({ message: err.message })
+    res.json(err)
   }
 })
 
 //get all todos
-app.get('/todos', async (req, res) => {
+app.get('/todos/', async (req, res) => {
   try {
     const allTodos = await pool.query(
       'SELECT * FROM todo ORDER BY updated_at DESC'
     )
+
+    // const { id } = req.params
+    // const allTodos = await pool.query(
+    //   'SELECT * FROM todo ORDER BY updated_at DESC WHERE user_id = $1',
+    //   [id]
+    // )
+
+    console.log(allTodos.rows)
 
     res.json(allTodos.rows)
   } catch (error) {

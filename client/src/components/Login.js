@@ -1,17 +1,16 @@
-import React, { useRef } from 'react'
+import React, { useRef, useState } from 'react'
 import { Container, Form, Button, ButtonGroup } from 'react-bootstrap'
 import { v4 as uuidV4 } from 'uuid'
+import { Link } from 'react-router-dom'
 
-export default function Login({ setId }) {
-  const idRef = useRef()
+export default function Login() {
+  const emailRef = useRef()
+  const passwordRef = useRef()
+  const [email, setEmail] = useState('')
 
   function handleSubmit(e) {
     e.preventDefault()
-    setId(idRef.current.value)
-  }
-
-  function createNewId() {
-    setId(uuidV4())
+    setEmail(emailRef.current.value)
   }
 
   return (
@@ -19,27 +18,29 @@ export default function Login({ setId }) {
       <Form
         onSubmit={handleSubmit}
         md='8'
-        className='align-items-center d-flex flex-column '
+        className='align-items-center d-flex flex-column mb-6'
       >
-        <Form.Group className='mb-2'>
+        <Form.Group className='mb-2 '>
           <Form.Control
-            placeholder='Enter Your Id'
+            placeholder='Email'
             type='text'
-            ref={idRef}
+            ref={emailRef}
+            required
+          />
+          <Form.Control
+            placeholder='Password'
+            type='text'
+            ref={passwordRef}
             required
           />
         </Form.Group>
-        <ButtonGroup className='w-100 ' aria-label='Basic example'>
-          <Button className='w-50' type='submit'>
-            <span>
-              <i className='fa fa-sign-in-alt'></i>
-              <span>Login</span>
-            </span>
-          </Button>
-          <Button className='w-50' onClick={createNewId} variant='secondary'>
-            New Id
-          </Button>
-        </ButtonGroup>
+        <Button className='w-100' type='submit'>
+          Login
+        </Button>
+
+        <Link to='/register'>
+          <p> Sign up</p>
+        </Link>
       </Form>
     </Container>
   )

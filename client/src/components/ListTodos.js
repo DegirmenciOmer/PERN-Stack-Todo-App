@@ -4,12 +4,13 @@ import { useTodoList } from '../contexts/AllTodosContext'
 import TodoItem from './TodoItem'
 import { fetchTodos } from './../utils/index'
 
-const ListTodos = () => {
-  const { todoList, setTodoList, searchValue } = useTodoList()
+const ListTodos = ({ id }) => {
+  const { todoList, setTodoList } = useTodoList()
 
   useEffect(() => {
     let isMounted = true
-    fetchTodos().then((data) => isMounted && setTodoList(data))
+
+    fetchTodos(id).then((data) => isMounted && setTodoList(data))
     return () => {
       isMounted = false
     }
@@ -20,7 +21,11 @@ const ListTodos = () => {
       <div>
         <ListGroup>
           {todoList.length === 0 ? (
-            <Spinner animation='border' role='status'>
+            <Spinner
+              className='text-align-center'
+              animation='border'
+              role='status'
+            >
               <span className='visually-hidden'>Loading...</span>
             </Spinner>
           ) : (

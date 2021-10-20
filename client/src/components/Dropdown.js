@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { useTodoList } from '../contexts/AllTodosContext'
 import './Dropdown.css'
-import TodoItem from './TodoItem'
 
 const Dropdown = ({ prompt }) => {
   const { todoList, setSearchValue, searchValue } = useTodoList()

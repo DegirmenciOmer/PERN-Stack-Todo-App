@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import Dropdown from './Dropdown'
 import { Container, Navbar } from 'react-bootstrap'
 import { useTodoList } from '../contexts/AllTodosContext'

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Form, InputGroup } from 'react-bootstrap'
+import { Button, Form } from 'react-bootstrap'
 import { useTodoList } from './../contexts/AllTodosContext'
 
 const Input = () => {
