@@ -2,5 +2,22 @@ CREATE DATABASE perntodo;
 
 CREATE TABLE todo(
   todo_id SERIAL PRIMARY KEY,
-  description VARCHAR(255), is_done BOOLEAN DEFAULT FALSE;
+  description VARCHAR(255), 
+  is_done BOOLEAN DEFAULT FALSE, 
+  user_id VARCHAR(50)  NOT NULL REFERENCES users(user_id) 
+  ON DELETE CASCADE ON UPDATE CASCADE, 
+  created_at TIMESTAMP NOT NULL DEFAULT NOW(),  
+  updated_at TIMESTAMP NOT NULL DEFAULT NOW() );
+
+CREATE TABLE users(
+  user_id VARCHAR(50) PRIMARY KEY NOT NULL,
+  name VARCHAR(150) NOT NULL,
+  email VARCHAR(150) NOT NULL,
+  password VARCHAR(50) NOT NULL,
+  UNIQUE(email)
 );
+
+
+
+  ALTER TABLE todo
+ADD user_id VARCHAR(50)  NOT NULL REFERENCES users(user_id);

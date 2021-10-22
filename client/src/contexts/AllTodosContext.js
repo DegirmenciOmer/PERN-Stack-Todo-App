@@ -1,5 +1,4 @@
 import React, { useContext, useState } from 'react'
-import useLocalStorage from '../hooks/useLocalStorage'
 import { URL } from '../utils'
 
 const TodoListContext = React.createContext()
@@ -8,26 +7,28 @@ export function useTodoList() {
   return useContext(TodoListContext)
 }
 
-export function TodoListProvider({ children }) {
-  const [todoList, setTodoList] = useLocalStorage('todolist', [])
+export function TodoListProvider({ children, id }) {
+  const [todoList, setTodoList] = useState([])
   const [description, setDescription] = useState('')
+
   const [searchValue, setSearchValue] = useState(null)
   const onSubmitTodo = async (e) => {
     e.preventDefault()
     try {
-      const body = { description }
+      const body = { description, user_id: id }
 
       if (description.length < 3) {
         alert('You must type at least 3 characters')
       } else {
-        await fetch(URL, {
+        //@GET Todos
+        await fetch(`${URL}/todos/`, {
           method: 'POST',
           body: JSON.stringify(body),
           headers: { 'Content-Type': 'application/json' },
         })
         setDescription('')
       }
-      window.location = '/'
+      window.location = '/home'
     } catch (error) {
       console.log(error)
     }

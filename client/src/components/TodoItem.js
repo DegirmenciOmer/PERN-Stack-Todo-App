@@ -31,8 +31,6 @@ const TodoItem = ({ todo }) => {
     } `,
   }
 
-  console.log(window.innerWidth)
-
   return (
     <>
       <ListGroup.Item

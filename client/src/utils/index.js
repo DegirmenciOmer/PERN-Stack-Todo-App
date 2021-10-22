@@ -2,11 +2,10 @@ export const URL =
   process.env.NODE_ENV === 'development'
     ? process.env.REACT_APP_DEV_URL
     : process.env.REACT_APP_PRODUCTION_URL
-console.log(URL, process.env.NODE_ENV)
 
-export const fetchTodos = async () => {
+export const fetchTodos = async (id) => {
   try {
-    const response = await fetch(URL)
+    const response = await fetch(`${URL}/todos/${id}`)
     const data = await response.json()
     console.log(data)
     return data
@@ -19,13 +18,13 @@ export const editTodo = async (description, id) => {
   try {
     const body = { description }
 
-    await fetch(`${URL}/${id}`, {
+    await fetch(`${URL}/todos/${id}`, {
       method: 'PUT',
       body: JSON.stringify(body),
       headers: { 'Content-Type': 'application/json' },
     })
 
-    window.location = '/'
+    window.location = '/home'
   } catch (error) {
     console.error(error)
   }
@@ -33,7 +32,7 @@ export const editTodo = async (description, id) => {
 
 export const toggleTodo = async (toggleId) => {
   try {
-    await fetch(`${URL}/toggle/${toggleId}`, { method: 'PUT' })
+    await fetch(`${URL}/todos/toggle/${toggleId}`, { method: 'PUT' })
   } catch (error) {
     console.error(error)
   }
