@@ -30,28 +30,51 @@ app.post('/users/register', async (req, res) => {
     )
     console.log({ alreadyExists })
     if (alreadyExists) {
+      res.sendStatus(400)
       throw new Error('This email adress already exists')
     } else {
       const newUser = await pool.query(
         'INSERT INTO users(name, email, password, user_id) VALUES($1, $2, $3, $4) RETURNING *',
         [name, email, password, id]
       )
-      // const user = await pool.query(
-      //   'SELECT user_id FROM users WHERE user_id = $1',
-      //   [id]
-      // )
-      // console.log(user.rows[0])
-
       res.status(201).json(newUser.rows[0])
     }
   } catch (error) {
     console.log(error.message)
-    res.status(400).send(error.message)
+    res.send(error.message)
+  }
+})
+
+//Login user
+app.post('/users/login', async (req, res) => {
+  try {
+    const { email, password } = req.body
+    res.setHeader('Content-Type', 'application/json')
+
+    console.log({ email, password })
+
+    const user = await pool.query('SELECT * FROM users WHERE email = $1', [
+      email,
+    ])
+    const selectedUser = user.rows[0]
+    console.log({ selectedUser, user })
+    if (!selectedUser) {
+      res.status(404)
+      throw new Error('Please sign up first')
+    } else if (selectedUser && selectedUser.password !== password) {
+      res.status(404)
+      throw new Error('Incorrect password')
+    } else {
+      res.send(selectedUser)
+    }
+  } catch (error) {
+    console.log(error.message)
+    res.send(error.message)
   }
 })
 
 //add new todo
-app.post('/todos', async (req, res) => {
+app.post('/todos/', async (req, res) => {
   res.setHeader('Content-Type', 'application/json')
   try {
     const { description, user_id } = req.body
@@ -66,6 +89,7 @@ app.post('/todos', async (req, res) => {
       [description, user_id]
     )
 
+    console.log(newTodo.rows[0])
     res.json(newTodo.rows[0])
   } catch (err) {
     console.error(err.message)
@@ -74,17 +98,14 @@ app.post('/todos', async (req, res) => {
 })
 
 //get all todos
-app.get('/todos/', async (req, res) => {
+app.get('/todos/:id', async (req, res) => {
   try {
+    const { id } = req.params
+    console.log({ id })
     const allTodos = await pool.query(
-      'SELECT * FROM todo ORDER BY updated_at DESC'
+      'SELECT * FROM todo WHERE user_id = $1 ORDER BY created_at DESC ',
+      [id]
     )
-
-    // const { id } = req.params
-    // const allTodos = await pool.query(
-    //   'SELECT * FROM todo ORDER BY updated_at DESC WHERE user_id = $1',
-    //   [id]
-    // )
 
     console.log(allTodos.rows)
 
@@ -96,20 +117,21 @@ app.get('/todos/', async (req, res) => {
 })
 
 //get one todo
-app.get('/todos/:id', async (req, res) => {
-  try {
-    const { id } = req.params
-    const selectedTodo = await pool.query(
-      'SELECT * FROM todo WHERE todo_id = $1',
-      [id]
-    )
+// app.get('/todos/:id', async (req, res) => {
+//   try {
+//     const { id } = req.params
+//     const selectedTodo = await pool.query(
+//       'SELECT * FROM todo WHERE todo_id = $1',
+//       [id]
+//     )
 
-    res.json(selectedTodo.rows[0])
-  } catch (error) {
-    console.error(error.message)
-    res.json(error.message)
-  }
-})
+//     res.json(selectedTodo.rows[0])
+//   } catch (error) {
+//     console.error(error.message)
+//     res.json(error.message)
+//   }
+// })
+
 //update a todo
 app.put('/todos/:id', async (req, res) => {
   try {

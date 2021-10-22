@@ -1,5 +1,4 @@
 import React, { useContext, useState } from 'react'
-import useLocalStorage from '../hooks/useLocalStorage'
 import { URL } from '../utils'
 
 const TodoListContext = React.createContext()
@@ -21,14 +20,15 @@ export function TodoListProvider({ children, id }) {
       if (description.length < 3) {
         alert('You must type at least 3 characters')
       } else {
-        await fetch(URL, {
+        //@GET Todos
+        await fetch(`${URL}/todos/`, {
           method: 'POST',
           body: JSON.stringify(body),
           headers: { 'Content-Type': 'application/json' },
         })
         setDescription('')
       }
-      window.location = '/'
+      window.location = '/home'
     } catch (error) {
       console.log(error)
     }

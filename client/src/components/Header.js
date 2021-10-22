@@ -1,11 +1,14 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Dropdown from './Dropdown'
-import { Container, Navbar } from 'react-bootstrap'
+import { Button, Container, Navbar } from 'react-bootstrap'
 import { useTodoList } from '../contexts/AllTodosContext'
 import TodoItem from './TodoItem'
+import LogoutModal from './LogoutModal'
 
-const Header = () => {
+const Header = ({ setId }) => {
   const { setSearchValue, searchValue } = useTodoList()
+
+  const [openLogoutModal, setOpenLogoutModal] = useState(false)
 
   return (
     <>
@@ -24,12 +27,14 @@ const Header = () => {
             id='basic-navbar-nav'
           >
             <div>
-              {' '}
               <Dropdown
                 prompt='Search...'
                 onChange={(val) => setSearchValue(val)}
               />
             </div>
+            <Button variant='outline-danger' onClick={setOpenLogoutModal}>
+              Logout
+            </Button>
           </Navbar.Collapse>
         </Container>
       </Navbar>
@@ -41,6 +46,13 @@ const Header = () => {
           <TodoItem todo={searchValue} />
           <hr />
         </div>
+      )}
+      {openLogoutModal && (
+        <LogoutModal
+          openModal={openLogoutModal}
+          setId={setId}
+          setOpenModal={setOpenLogoutModal}
+        />
       )}
     </>
   )

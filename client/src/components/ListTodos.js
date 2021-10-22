@@ -9,10 +9,13 @@ const ListTodos = ({ id }) => {
 
   useEffect(() => {
     let isMounted = true
+    console.log({ todoList })
 
-    fetchTodos(id).then((data) => isMounted && setTodoList(data))
-    return () => {
-      isMounted = false
+    if (id) {
+      fetchTodos(id).then((data) => isMounted && setTodoList(data))
+      return () => {
+        isMounted = false
+      }
     }
   }, [])
 
@@ -21,11 +24,7 @@ const ListTodos = ({ id }) => {
       <div>
         <ListGroup>
           {todoList.length === 0 ? (
-            <Spinner
-              className='text-align-center'
-              animation='border'
-              role='status'
-            >
+            <Spinner className='m-auto mt-5' animation='border' role='status'>
               <span className='visually-hidden'>Loading...</span>
             </Spinner>
           ) : (

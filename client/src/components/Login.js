@@ -1,22 +1,42 @@
-import React, { useRef, useState } from 'react'
-import { Container, Form, Button, ButtonGroup } from 'react-bootstrap'
-import { v4 as uuidV4 } from 'uuid'
-import { Link } from 'react-router-dom'
+import React, { useState } from 'react'
+import { Container, Form, Button } from 'react-bootstrap'
+import { Link, useHistory } from 'react-router-dom'
+import { URL } from '../utils'
+import LoginWarningModal from './LoginWarningModal'
 
-export default function Login() {
-  const emailRef = useRef()
-  const passwordRef = useRef()
+export default function Login({ id, setId }) {
   const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [openLoginWarningModal, setOpenLoginWarningModal] = useState(false)
 
-  function handleSubmit(e) {
+  let history = useHistory()
+
+  async function login(e) {
     e.preventDefault()
-    setEmail(emailRef.current.value)
+    try {
+      const body = { email, password }
+      console.log(JSON.stringify(body))
+      const response = await fetch(`${URL}/users/login`, {
+        method: 'POST',
+        body: JSON.stringify(body),
+        headers: { 'Content-Type': 'application/json' },
+      })
+      console.log(response)
+      const data = await response.json()
+      console.log(data)
+      setId(data.user_id)
+      history.push('/home')
+      return data
+    } catch (err) {
+      console.log(err)
+      setOpenLoginWarningModal(true)
+    }
   }
 
   return (
     <Container className='align-items-center d-flex justify-content-center'>
       <Form
-        onSubmit={handleSubmit}
+        onSubmit={login}
         md='8'
         className='align-items-center d-flex flex-column mb-6'
       >
@@ -24,13 +44,13 @@ export default function Login() {
           <Form.Control
             placeholder='Email'
             type='text'
-            ref={emailRef}
+            onChange={(e) => setEmail(e.target.value)}
             required
           />
           <Form.Control
             placeholder='Password'
             type='text'
-            ref={passwordRef}
+            onChange={(e) => setPassword(e.target.value)}
             required
           />
         </Form.Group>
@@ -42,6 +62,13 @@ export default function Login() {
           <p> Sign up</p>
         </Link>
       </Form>
+      {openLoginWarningModal && (
+        <LoginWarningModal
+          openModal={openLoginWarningModal}
+          setId={setId}
+          setOpenModal={setOpenLoginWarningModal}
+        />
+      )}
     </Container>
   )
 }

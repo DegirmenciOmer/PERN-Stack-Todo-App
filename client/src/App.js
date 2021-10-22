@@ -7,27 +7,36 @@ import Header from './components/Header'
 import Login from './components/Login'
 import useLocalStorage from './hooks/useLocalStorage'
 import Register from './components/Register'
-import { BrowserRouter as Router, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom'
 import Switch from 'react-bootstrap/esm/Switch'
 
 function App() {
   const [id, setId] = useLocalStorage('todo-user-id', null)
+
   return (
     <Router>
       <Switch>
-        <TodoListProvider>
+        <TodoListProvider id={id}>
           {id ? (
-            <Route exact path='/'>
+            <Route path='/home'>
               <Container className='col-sm-12 col-md-8 col-lg-4 mx-auto h-40'>
-                <Header />
+                <Header setId={setId} id={id} />
                 <Input />
                 <ListTodos id={id} />
               </Container>
             </Route>
           ) : (
-            <Route path='/register'>
-              <Register setId={setId} id={id} />
-            </Route>
+            <>
+              <Route path='/'>
+                <Redirect to='/login' />
+              </Route>
+              <Route path='/register'>
+                <Register setId={setId} id={id} />
+              </Route>
+              <Route path='/login'>
+                <Login setId={setId} id={id} />
+              </Route>
+            </>
           )}
         </TodoListProvider>
       </Switch>

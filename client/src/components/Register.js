@@ -1,5 +1,5 @@
-import React, { useRef, useState } from 'react'
-import { Container, Form, Button, ButtonGroup, Modal } from 'react-bootstrap'
+import React, { useState } from 'react'
+import { Container, Form, Button, Modal } from 'react-bootstrap'
 import { URL } from '../utils'
 import axios from 'axios'
 import { Link, useHistory } from 'react-router-dom'
@@ -26,7 +26,7 @@ export default function Register({ setId, id }) {
           'Content-Type': 'application/json',
         },
       }
-      const res = await axios.post(`${URL}users/register`, body, config)
+      const res = await axios.post(`${URL}/users/register`, body, config)
       setError(null)
       console.log({ res, id })
       res.data && setId(res.data.user_id)
