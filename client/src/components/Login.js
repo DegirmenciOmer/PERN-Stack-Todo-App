@@ -22,6 +22,7 @@ export default function Login({ id, setId }) {
         headers: { 'Content-Type': 'application/json' },
       })
       console.log(response)
+      console.log(`${URL}/users/login`)
       const data = await response.json()
       console.log(data)
       setId(data.user_id)
