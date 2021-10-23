@@ -28,6 +28,7 @@ export default function Register({ setId, id }) {
       }
       const res = await axios.post(`${URL}/users/register`, body, config)
       setError(null)
+      console.log(`${URL}/users/register`)
       console.log({ res, id })
       res.data && setId(res.data.user_id)
       console.log(res.data.user_id)
