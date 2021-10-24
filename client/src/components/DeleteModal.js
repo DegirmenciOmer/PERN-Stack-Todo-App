@@ -8,7 +8,10 @@ const DeleteModal = ({ activeTodo, setOpenModal, openModal }) => {
 
   const handleDelete = async (deleteId) => {
     try {
-      await fetch(`${URL}/${deleteId}`, { method: 'DELETE' })
+      await fetch(`${URL}/todos/${deleteId}`, {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json' },
+      })
       setTodoList(todoList.filter((todo) => todo.todo_id !== deleteId))
       setOpenModal(false)
 
