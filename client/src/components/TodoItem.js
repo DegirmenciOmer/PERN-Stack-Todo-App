@@ -17,7 +17,7 @@ const TodoItem = ({ todo }) => {
 
   const handleToggle = (toggleId) => {
     toggleTodo(toggleId)
-    window.location = '/'
+    window.location = '/home'
   }
 
   const handleEditShow = (e) => {
