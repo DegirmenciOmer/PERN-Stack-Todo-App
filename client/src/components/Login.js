@@ -9,6 +9,8 @@ export default function Login({ id, setId }) {
   const [password, setPassword] = useState('')
   const [openLoginWarningModal, setOpenLoginWarningModal] = useState(false)
 
+  console.log({ URL })
+
   let history = useHistory()
 
   async function login(e) {
