@@ -1,6 +1,7 @@
 export const URL =
   process.env.NODE_ENV === 'development'
-    ? process.env.REACT_APP_DEV_URL
+    ? // ? process.env.REACT_APP_DEV_URL
+      process.env.REACT_APP_PRODUCTION_URL
     : process.env.REACT_APP_PRODUCTION_URL
 
 export const fetchTodos = async (id) => {
