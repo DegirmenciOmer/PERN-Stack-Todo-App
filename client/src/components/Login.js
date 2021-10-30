@@ -37,7 +37,7 @@ export default function Login({ id, setId }) {
   }
 
   return (
-    <Container className='align-items-center d-flex justify-content-center'>
+    <Container className='align-items-center d-flex justify-content-center h-100'>
       <Form
         onSubmit={login}
         md='8'
