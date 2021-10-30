@@ -15,7 +15,7 @@ function App() {
 
   return (
     <Router>
-      <Switch>
+      <Switch style={{ height: '100vh' }}>
         <TodoListProvider id={id}>
           {id ? (
             <Route path='/home'>

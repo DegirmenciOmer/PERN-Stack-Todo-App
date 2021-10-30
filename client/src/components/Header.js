@@ -23,7 +23,7 @@ const Header = ({ setId }) => {
           </Navbar.Brand>
           <Navbar.Toggle aria-controls='basic-navbar-nav' />
           <Navbar.Collapse
-            className='justify-content-end'
+            className='justify-content-end mt-2'
             id='basic-navbar-nav'
           >
             <div>
@@ -32,7 +32,11 @@ const Header = ({ setId }) => {
                 onChange={(val) => setSearchValue(val)}
               />
             </div>
-            <Button variant='outline-danger' onClick={setOpenLogoutModal}>
+            <Button
+              className={window.innerWidth < 992 ? 'w-100 mt-2' : ''}
+              variant='outline-danger'
+              onClick={setOpenLogoutModal}
+            >
               Logout
             </Button>
           </Navbar.Collapse>

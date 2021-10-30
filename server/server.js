@@ -31,7 +31,7 @@ app.post('/users/register', async (req, res) => {
       [email]
     )
     if (alreadyExists) {
-      res.sendStatus(400)
+      res.status(400)
       throw new Error('This email adress already exists')
     } else {
       const newUser = await pool.query(

@@ -8,7 +8,6 @@ export const fetchTodos = async (id) => {
   try {
     const response = await fetch(`${URL}/todos/${id}`)
     const data = await response.json()
-    console.log(data)
     return data
   } catch (err) {
     console.error(err.message)

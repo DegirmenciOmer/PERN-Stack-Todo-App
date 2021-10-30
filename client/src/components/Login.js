@@ -17,16 +17,12 @@ export default function Login({ id, setId }) {
     e.preventDefault()
     try {
       const body = { email, password }
-      console.log(JSON.stringify(body))
       const response = await fetch(`${URL}/users/login`, {
         method: 'POST',
         body: JSON.stringify(body),
         headers: { 'Content-Type': 'application/json' },
       })
-      console.log(response)
-      console.log(`${URL}/users/login`)
       const data = await response.json()
-      console.log(data)
       setId(data.user_id)
       history.push('/home')
       return data
@@ -37,7 +33,7 @@ export default function Login({ id, setId }) {
   }
 
   return (
-    <Container className='align-items-center d-flex justify-content-center h-100'>
+    <Container className='align-items-center flex-column d-flex justify-content-center h-100'>
       <Form
         onSubmit={login}
         md='8'
@@ -60,11 +56,11 @@ export default function Login({ id, setId }) {
         <Button className='w-100' type='submit'>
           Login
         </Button>
-
-        <Link to='/register'>
-          <p> Sign up</p>
-        </Link>
       </Form>
+      <p className='mt-5 mb-4'> Not a member yet?</p>
+      <Link to='/register'>
+        <Button variant='secondary'> Sign up</Button>
+      </Link>
       {openLoginWarningModal && (
         <LoginWarningModal
           openModal={openLoginWarningModal}
