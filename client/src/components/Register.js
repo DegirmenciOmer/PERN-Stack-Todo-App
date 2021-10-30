@@ -28,10 +28,7 @@ export default function Register({ setId, id }) {
       }
       const res = await axios.post(`${URL}/users/register`, body, config)
       setError(null)
-      console.log(`${URL}/users/register`)
-      console.log({ res, id })
       res.data && setId(res.data.user_id)
-      console.log(res.data.user_id)
 
       history.push('/home')
     } catch (err) {
@@ -41,7 +38,7 @@ export default function Register({ setId, id }) {
   }
 
   return (
-    <Container className='align-items-center d-flex flex-column justify-content-center'>
+    <Container className='align-items-center flex-column d-flex justify-content-center h-100'>
       <Form
         onSubmit={handleRegister}
         md='8'
@@ -71,9 +68,10 @@ export default function Register({ setId, id }) {
           Sign up
         </Button>
       </Form>
-      <p>
-        Already signed up? <Link to='/login'>Sign in</Link>
-      </p>
+      <p className='mt-5 mb-4'>Already signed up? </p>
+      <Link to='/login'>
+        <Button variant='secondary'> Sign in</Button>
+      </Link>
       {error && (
         <Modal
           className='text-danger'

@@ -14,8 +14,6 @@ const DeleteModal = ({ activeTodo, setOpenModal, openModal }) => {
       })
       setTodoList(todoList.filter((todo) => todo.todo_id !== deleteId))
       setOpenModal(false)
-
-      console.log(`${URL}/${deleteId}`)
     } catch (error) {
       console.error(error)
     }
