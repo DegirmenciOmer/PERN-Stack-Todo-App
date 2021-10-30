@@ -18,13 +18,19 @@ function App() {
       <Switch style={{ height: '100vh' }}>
         <TodoListProvider id={id}>
           {id ? (
-            <Route path='/home'>
-              <Container className='col-sm-12 col-md-8 col-lg-4 mx-auto h-40'>
-                <Header setId={setId} id={id} />
-                <Input />
-                <ListTodos id={id} />
-              </Container>
-            </Route>
+            <>
+              <Route path='/'>
+                <Redirect to='/home' />
+              </Route>
+
+              <Route path='/home'>
+                <Container className='col-sm-12 col-md-8 col-lg-4 mx-auto h-40'>
+                  <Header setId={setId} id={id} />
+                  <Input />
+                  <ListTodos id={id} />
+                </Container>
+              </Route>
+            </>
           ) : (
             <>
               <Route path='/'>
