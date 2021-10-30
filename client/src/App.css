@@ -4,11 +4,15 @@
 
 body{
 
-  background-color: #5c90eb !important;
+  background-color: rgb(219, 202, 227) !important;
   height: 100vh ;
   
 
 }
+
+
+ .navbar-toggler{border-color: rgb(219, 202, 227) !important;
+  color: rgb(219, 202, 227) !important;}
 
 
 .App-header {
@@ -35,6 +39,10 @@ body{
   height: 100vh;
 }
 
+button:focus {
+  outline: 0 !important;
+  box-shadow: none !important;
+}
 
 .but{
   height: 2.1rem !important;
@@ -55,8 +63,9 @@ body{
   padding-bottom: 0 !important;
   width: 100% !important;
   cursor: pointer !important;
-  background-color: rgb(160, 206, 255) !important;
+  background-color: rgba(160, 206, 255, 0) !important;
   height: 2.2rem !important;
+  border: 2px solid #3c2b42 !important;
 }
 
 h1{

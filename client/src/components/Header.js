@@ -13,13 +13,22 @@ const Header = ({ setId }) => {
   return (
     <>
       <Navbar
-        style={{ backgroundColor: 'rgb(140, 196, 255)' }}
-        expand='lg'
+        style={{
+          backgroundColor: '#3c2b42',
+          border: '1px solid #000',
+        }}
+        expand='xs'
         className='rounded'
       >
         <Container fluid>
           <Navbar.Brand href='#'>
-            <h2>Todo App</h2>
+            <h2
+              style={{
+                color: 'rgb(219, 202, 227)',
+              }}
+            >
+              Todo App
+            </h2>
           </Navbar.Brand>
           <Navbar.Toggle aria-controls='basic-navbar-nav' />
           <Navbar.Collapse
@@ -33,7 +42,7 @@ const Header = ({ setId }) => {
               />
             </div>
             <Button
-              className={window.innerWidth < 992 ? 'w-100 mt-2' : ''}
+              className='w-100 mt-2'
               variant='outline-danger'
               onClick={setOpenLogoutModal}
             >
