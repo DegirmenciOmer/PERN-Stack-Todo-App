@@ -69,7 +69,7 @@ const TodoItem = ({ todo }) => {
           </Button>
           <Button
             style={responsiveBtnDisplay}
-            className='but border-0 p-1'
+            className='but delete-item-btn border-0 p-1'
             onClick={() => handleDeleteShow(todo)}
             variant='outline-danger'
           >

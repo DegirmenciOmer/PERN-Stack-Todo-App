@@ -4,7 +4,7 @@ import { URL } from '../utils'
 import axios from 'axios'
 import { Link, useHistory } from 'react-router-dom'
 
-export default function Register({ setId, id }) {
+export default function Register({ setUser, id }) {
   const [username, setUsername] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -28,7 +28,7 @@ export default function Register({ setId, id }) {
       }
       const res = await axios.post(`${URL}/users/register`, body, config)
       setError(null)
-      res.data && setId(res.data.user_id)
+      res.data && setUser(res.data)
 
       history.push('/home')
     } catch (err) {

@@ -2,11 +2,11 @@ import React from 'react'
 import { Button, Modal } from 'react-bootstrap'
 import { useHistory } from 'react-router-dom'
 
-const LogoutModal = ({ setOpenModal, openModal, setId }) => {
+const LogoutModal = ({ setOpenModal, openModal, setUser }) => {
   const history = useHistory()
 
   const logout = () => {
-    setId(null)
+    setUser(null)
     setOpenModal(false)
     history.push('/login')
   }
