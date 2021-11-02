@@ -7,15 +7,14 @@ export function useTodoList() {
   return useContext(TodoListContext)
 }
 
-export function TodoListProvider({ children, id }) {
+export function TodoListProvider({ children, user }) {
   const [todoList, setTodoList] = useState([])
   const [description, setDescription] = useState('')
-
   const [searchValue, setSearchValue] = useState(null)
   const onSubmitTodo = async (e) => {
     e.preventDefault()
     try {
-      const body = { description, user_id: id }
+      const body = { description, user_id: user.user_id }
 
       if (description.length < 3) {
         alert('You must type at least 3 characters')

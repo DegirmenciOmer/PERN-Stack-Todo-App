@@ -4,7 +4,7 @@
 
 body{
 
-  background-color: rgb(219, 202, 227) !important;
+  background-color: rgb(225, 214, 230) !important;
   height: 100vh ;
   
 
@@ -54,6 +54,15 @@ button:focus {
   padding-top: 0 !important;
   padding-bottom: 0 !important;
   margin-bottom: 0 !important;
+}
+
+.delete-item-btn{
+  color: #3c2b42 !important;
+}
+
+.delete-item-btn:hover{
+  background-color: #3c2b42 !important;
+  color: #fff !important;
 }
 
 

@@ -1,15 +1,15 @@
 import React, { useState } from 'react'
 import { Container, Form, Button } from 'react-bootstrap'
 import { Link, useHistory } from 'react-router-dom'
+import { useTodoList } from '../contexts/AllTodosContext'
 import { URL } from '../utils'
 import LoginWarningModal from './LoginWarningModal'
 
-export default function Login({ id, setId }) {
+export default function Login({ user, setUser }) {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [openLoginWarningModal, setOpenLoginWarningModal] = useState(false)
-
-  console.log({ URL })
+  const { setUserName } = useTodoList()
 
   let history = useHistory()
 
@@ -23,7 +23,8 @@ export default function Login({ id, setId }) {
         headers: { 'Content-Type': 'application/json' },
       })
       const data = await response.json()
-      setId(data.user_id)
+      setUser(data)
+      setUserName(data.name)
       history.push('/home')
       return data
     } catch (err) {
@@ -64,7 +65,7 @@ export default function Login({ id, setId }) {
       {openLoginWarningModal && (
         <LoginWarningModal
           openModal={openLoginWarningModal}
-          setId={setId}
+          setUser={setUser}
           setOpenModal={setOpenLoginWarningModal}
         />
       )}

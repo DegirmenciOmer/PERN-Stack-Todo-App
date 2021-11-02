@@ -5,7 +5,7 @@ import { useTodoList } from '../contexts/AllTodosContext'
 import TodoItem from './TodoItem'
 import LogoutModal from './LogoutModal'
 
-const Header = ({ setId }) => {
+const Header = ({ setUser, user }) => {
   const { setSearchValue, searchValue } = useTodoList()
 
   const [openLogoutModal, setOpenLogoutModal] = useState(false)
@@ -27,7 +27,7 @@ const Header = ({ setId }) => {
                 color: 'rgb(219, 202, 227)',
               }}
             >
-              Todo App
+              {user.name}'s Todo App
             </h2>
           </Navbar.Brand>
           <Navbar.Toggle aria-controls='basic-navbar-nav' />
@@ -63,7 +63,7 @@ const Header = ({ setId }) => {
       {openLogoutModal && (
         <LogoutModal
           openModal={openLogoutModal}
-          setId={setId}
+          setUser={setUser}
           setOpenModal={setOpenLogoutModal}
         />
       )}

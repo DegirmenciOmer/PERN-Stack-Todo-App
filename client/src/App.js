@@ -11,23 +11,23 @@ import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom'
 import Switch from 'react-bootstrap/esm/Switch'
 
 function App() {
-  const [id, setId] = useLocalStorage('todo-user-id', null)
+  const [user, setUser] = useLocalStorage('todo-user', null)
 
   return (
     <Router>
       <Switch style={{ height: '100vh' }}>
-        <TodoListProvider id={id}>
-          {id ? (
+        <TodoListProvider user={user}>
+          {user ? (
             <>
               <Route path='/'>
                 <Redirect to='/home' />
               </Route>
 
               <Route path='/home'>
-                <Container className='col-sm-12 col-md-8 col-lg-4 mx-auto h-40'>
-                  <Header setId={setId} id={id} />
+                <Container className='col-sm-12 col-md-8 col-lg-4 mx-auto p-0 h-40'>
+                  <Header setUser={setUser} user={user} />
                   <Input />
-                  <ListTodos id={id} />
+                  <ListTodos user={user} />
                 </Container>
               </Route>
             </>
@@ -37,10 +37,10 @@ function App() {
                 <Redirect to='/login' />
               </Route>
               <Route path='/register'>
-                <Register setId={setId} id={id} />
+                <Register setUser={setUser} user={user} />
               </Route>
               <Route path='/login'>
-                <Login setId={setId} id={id} />
+                <Login setUser={setUser} user={user} />
               </Route>
             </>
           )}
@@ -54,5 +54,5 @@ export default App
 
 /* <Route path='/login'>
             {' '}
-            <Login setId={setId} />
+            <Login setUser={setUser} />
           </Route> */
