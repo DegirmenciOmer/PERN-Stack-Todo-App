@@ -18,7 +18,6 @@ const Header = ({ setUser, user }) => {
           border: '1px solid #000',
         }}
         expand='xs'
-        className='rounded'
       >
         <Container fluid>
           <Navbar.Brand href='#'>

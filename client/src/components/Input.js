@@ -24,6 +24,7 @@ const Input = () => {
       <Button
         style={{
           fontSize: '16px',
+          marginLeft: '5px',
         }}
         variant='outline-light'
         type='submit'
