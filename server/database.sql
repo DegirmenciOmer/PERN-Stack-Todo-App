@@ -1,5 +1,13 @@
 CREATE DATABASE perntodo;
 
+CREATE TABLE users(
+  user_id VARCHAR(50) PRIMARY KEY NOT NULL,
+  name VARCHAR(150) NOT NULL,
+  email VARCHAR(150) NOT NULL,
+  password VARCHAR(50) NOT NULL,
+  UNIQUE(email)
+);
+
 CREATE TABLE todo(
   todo_id SERIAL PRIMARY KEY,
   description VARCHAR(255), 
@@ -8,13 +16,7 @@ CREATE TABLE todo(
   ON DELETE CASCADE ON UPDATE CASCADE, 
   created_at TIMESTAMP NOT NULL DEFAULT NOW() );
 
-CREATE TABLE users(
-  user_id VARCHAR(50) PRIMARY KEY NOT NULL,
-  name VARCHAR(150) NOT NULL,
-  email VARCHAR(150) NOT NULL,
-  password VARCHAR(50) NOT NULL,
-  UNIQUE(email)
-);
+
 
 
 
