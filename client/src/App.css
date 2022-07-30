@@ -2,18 +2,15 @@
   text-align: center;
 }
 
-body{
-
+body {
   background-color: rgb(225, 214, 230) !important;
-  height: 100vh ;
-  
-
+  height: 100vh;
 }
 
-
- .navbar-toggler{border-color: rgb(219, 202, 227) !important;
-  color: rgb(219, 202, 227) !important;}
-
+.navbar-toggler {
+  border-color: rgb(219, 202, 227) !important;
+  color: rgb(219, 202, 227) !important;
+}
 
 .App-header {
   background-color: #282c34;
@@ -30,11 +27,11 @@ body{
   color: #61dafb;
 }
 
-.list-group-item:hover{
+.list-group-item:hover {
   background-color: #d4d8df !important;
 }
 
-#root{
+#root {
   width: 100vw;
   height: 100vh;
 }
@@ -44,43 +41,41 @@ button:focus {
   box-shadow: none !important;
 }
 
-.but{
+.but {
   height: 2.1rem !important;
   line-height: 0 !important;
   padding-top: 0 !important;
   padding-bottom: 0 !important;
-} 
-.but i{
+}
+.but i {
   padding-top: 0 !important;
   padding-bottom: 0 !important;
   margin-bottom: 0 !important;
 }
 
-.delete-item-btn{
+.delete-item-btn {
   color: #3c2b42 !important;
 }
 
-.delete-item-btn:hover{
+.delete-item-btn:hover {
   background-color: #3c2b42 !important;
   color: #fff !important;
 }
 
-
-.todo-item{
-  margin-bottom: .6rem !important;
+.todo-item {
+  margin-bottom: 0.6rem !important;
   padding-top: 0px !important;
   padding-bottom: 0 !important;
   width: 100% !important;
   cursor: pointer !important;
   background-color: rgba(160, 206, 255, 0) !important;
   height: 2.2rem !important;
-  border: 2px solid #3c2b42 !important;
 }
 
-h1{
+h1 {
   color: rgb(113, 181, 204) !important;
 }
 
-.todo-item span{
-  padding-top: .2rem !important;
+.todo-item span {
+  padding-top: 0.2rem !important;
 }
