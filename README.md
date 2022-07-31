@@ -6,8 +6,8 @@ A basic todo app which has create, update, and delete features.
 URL: https://pern-todo-omer.netlify.app/
 
 ## Demo
-https://user-images.githubusercontent.com/59254278/181925136-8b36dca8-f979-4fa3-89c5-e93d6a375735.mp4
 
+https://youtu.be/MEdvyU40N0k
 
 ## Setup
 
