@@ -22,6 +22,7 @@ const ListTodos = ({ user }) => {
         isMounted = false
       }
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return (

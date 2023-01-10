@@ -19,6 +19,7 @@ const Dropdown = ({ prompt }) => {
     return () => {
       document.removeEventListener('click', toggleDropdown)
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchQuery])
 
   function toggleDropdown(e) {
