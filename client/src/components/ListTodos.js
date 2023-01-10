@@ -33,7 +33,8 @@ const ListTodos = ({ user }) => {
               <span className='visually-hidden'>Loading...</span>
             </Spinner>
           )}
-          {todoList && todoList.length === 0 && !loading ? (
+          {typeof todoList === 'string' ||
+          (todoList.length === 0 && !loading) ? (
             <p className='text-center'>Your todo list is empty.</p>
           ) : (
             <>
